@@ -1,0 +1,84 @@
+{
+  "polozky": [
+    {
+      "id": "MestskyObvodVPraze/19",
+      "kod": 19,
+      "nazev": {
+        "cs": "Praha 1"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/27",
+      "kod": 27,
+      "nazev": {
+        "cs": "Praha 2"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/35",
+      "kod": 35,
+      "nazev": {
+        "cs": "Praha 3"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/43",
+      "kod": 43,
+      "nazev": {
+        "cs": "Praha 4"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/51",
+      "kod": 51,
+      "nazev": {
+        "cs": "Praha 5"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/60",
+      "kod": 60,
+      "nazev": {
+        "cs": "Praha 6"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/78",
+      "kod": 78,
+      "nazev": {
+        "cs": "Praha 7"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/86",
+      "kod": 86,
+      "nazev": {
+        "cs": "Praha 8"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/94",
+      "kod": 94,
+      "nazev": {
+        "cs": "Praha 9"
+      },
+      "obec": "Obec/554782"
+    },
+    {
+      "id": "MestskyObvodVPraze/108",
+      "kod": 108,
+      "nazev": {
+        "cs": "Praha 10"
+      },
+      "obec": "Obec/554782"
+    }
+  ]
+}

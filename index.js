@@ -6,12 +6,46 @@ const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const Router = require('@koa/router');
 const json = require('koa-json');
+const isEmail = require('validator/lib/isEmail');
+const regions = require('./data/kraje.json');
+const districts = require('./data/okresy.json');
 
 mongoose.connect('mongodb://localhost:27017/RealEstates');
 mongoose.connection.on('error', console.error);
 mongoose.connection.once('open', () => {
   console.log('Connected to DB with mongoose');
 });
+
+// Custom Validators
+const isRegion = (value) => {
+  // Checks for valid region is Czech Republic
+  for (const region of regions.polozky) {
+    if (region.nazev.cs === value) {
+    //   console.log(region.nazev.cs);
+      return true;
+    }
+  }
+  return false;
+};
+
+// function definition needs to be used to correctly access 'this' context
+// eslint-disable-next-line func-names
+const isDistrict = function (value) {
+  // first checks if the given district is valid, then checks if it is from the right region
+  for (const district of districts.polozky) {
+    if (district.nazev.cs === value) {
+      for (const region of regions.polozky) {
+        if (this.region === region.nazev.cs) {
+          if (district.kraj === region.id) {
+            return true;
+          }
+          return false;
+        }
+      }
+    }
+  }
+  return false;
+};
 
 // DB schemas
 const estateSchema = new mongoose.Schema({
@@ -34,22 +68,39 @@ const estateSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator: (v) => /^\+420\d{9}$/.test(v),
+      message: (props) => `${props.value} is not a valid phone number!`,
     },
-    match: /^\+420\d{9}$/,
   },
   email: {
     type: String,
     required: true,
+    validate: {
+      validator: isEmail,
+      message: 'Not valid email address.',
+    },
   },
   region: {
     type: String,
     required: true,
+    validate: {
+      validator: isRegion,
+      message: 'The given Region is not valid',
+    },
   },
   district: {
     type: String,
     required: true,
+    validate: {
+      validator: isDistrict,
+      message: 'The given District is not valid',
+    },
   },
 });
+
+// estateSchema.pre('validate', function (next) {
+//   console.log(this);
+//   next();
+// });
 
 const Estate = mongoose.model('Estate', estateSchema);
 
