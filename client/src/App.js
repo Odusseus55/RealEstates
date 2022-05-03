@@ -7,6 +7,11 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import EstateList from "./components/EstatesList";
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
 // import MaterialLayout from "./components/Layout/MaterialLayout";
+import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import { theme, useStyle } from "./styles";
+import { ThemeProvider } from "@material-ui/core/styles";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -22,13 +27,28 @@ function App() {
 }
 
 function Layout() {
+  const classes = useStyle();
+
   return (
     <div>
-      {/* <ButtonAppBar /> */}
-      <ResponsiveAppBar />
-      <Container>
-        <Outlet />
-      </Container>
+      <ThemeProvider theme={theme}>
+        <Box sx={{ backgroundColor: "#e3f2fd" }}>
+          <ResponsiveAppBar />
+          <CssBaseline />
+          <Container
+            sx={{
+              display: "flex",
+              minHeight: "100vh",
+              flexDirection: "column",
+            }}
+          >
+            <Box my={3} className={classes.root}>
+              <Outlet />
+            </Box>
+          </Container>
+          <Footer />
+        </Box>
+      </ThemeProvider>
     </div>
   );
 }
