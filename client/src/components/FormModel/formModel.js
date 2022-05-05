@@ -4,17 +4,36 @@ export default {
     estateType: {
       name: "estateType",
       label: "Typ nemovitosti*",
-      requiredErrorMsg: "Typ nemovitosti je povinny údaj",
+      requiredErrorMsg: "Typ nemovitosti je povinný údaj",
     },
     region: {
       name: "region",
       label: "Kraj*",
-      requiredErrorMsg: "Kraj je povinny údaj",
+      requiredErrorMsg: "Kraj je povinný údaj",
     },
     district: {
       name: "district",
       label: "Okres*",
-      requiredErrorMsg: "Okres je povinny údaj",
+      requiredErrorMsg: "Okres je povinný údaj",
+    },
+    fullName: {
+      name: "fullName",
+      label: "Celé jméno*",
+      requiredErrorMsg: "Celé jméno je povinny údaj",
+      minErrorMsg: "Zadaný údaj je moc kratky",
+      maxErrorMsg: "Zadaný údaj je moc dlouhy",
+    },
+    phone: {
+      name: "phone",
+      label: "Telefonní číslo",
+      requiredErrorMsg: "Telefonní číslo je povinny údaj",
+      invalidErrorMsg: "Neplatný telefonní číslo",
+    },
+    email: {
+      name: "email",
+      label: "E-mail",
+      requiredErrorMsg: "E-mail je povinný údaj",
+      invalidErrorMsg: "Neplatný e-mail",
     },
 
     //     address2: {
