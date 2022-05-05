@@ -19,15 +19,15 @@ export default {
     fullName: {
       name: "fullName",
       label: "Celé jméno*",
-      requiredErrorMsg: "Celé jméno je povinny údaj",
-      minErrorMsg: "Zadaný údaj je moc kratky",
-      maxErrorMsg: "Zadaný údaj je moc dlouhy",
+      requiredErrorMsg: "Celé jméno je povinný údaj",
+      minErrorMsg: "Zadaný údaj je moc krátký",
+      maxErrorMsg: "Zadaný údaj je moc dlouhý",
     },
     phone: {
       name: "phone",
       label: "Telefonní číslo",
-      requiredErrorMsg: "Telefonní číslo je povinny údaj",
-      invalidErrorMsg: "Neplatný telefonní číslo",
+      requiredErrorMsg: "Telefonní číslo je povinný údaj",
+      invalidErrorMsg: "Neplatné telefonní číslo",
     },
     email: {
       name: "email",
@@ -35,57 +35,5 @@ export default {
       requiredErrorMsg: "E-mail je povinný údaj",
       invalidErrorMsg: "Neplatný e-mail",
     },
-
-    //     address2: {
-    //       name: "address2",
-    //       label: "Address Line 2",
-    //     },
-    //     city: {
-    //       name: "city",
-    //       label: "City*",
-    //       requiredErrorMsg: "City is required",
-    //     },
-    //     state: {
-    //       name: "state",
-    //       label: "State/Province/Region",
-    //     },
-    //     zipcode: {
-    //       name: "zipcode",
-    //       label: "Zipcode*",
-    //       requiredErrorMsg: "Zipcode is required",
-    //       invalidErrorMsg: "Zipcode is not valid (e.g. 70000)",
-    //     },
-    //     country: {
-    //       name: "country",
-    //       label: "Country*",
-    //       requiredErrorMsg: "Country is required",
-    //     },
-    //     useAddressForPaymentDetails: {
-    //       name: "useAddressForPaymentDetails",
-    //       label: "Use this address for payment details",
-    //     },
-    //     nameOnCard: {
-    //       name: "nameOnCard",
-    //       label: "Name on card*",
-    //       requiredErrorMsg: "Name on card is required",
-    //     },
-    //     cardNumber: {
-    //       name: "cardNumber",
-    //       label: "Card number*",
-    //       requiredErrorMsg: "Card number is required",
-    //       invalidErrorMsg: "Card number is not valid (e.g. 4111111111111)",
-    //     },
-    //     expiryDate: {
-    //       name: "expiryDate",
-    //       label: "Expiry date*",
-    //       requiredErrorMsg: "Expiry date is required",
-    //       invalidErrorMsg: "Expiry date is not valid",
-    //     },
-    //     cvv: {
-    //       name: "cvv",
-    //       label: "CVV*",
-    //       requiredErrorMsg: "CVV is required",
-    //       invalidErrorMsg: "CVV is invalid (e.g. 357)",
-    //     },
   },
 };

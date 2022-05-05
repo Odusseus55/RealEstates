@@ -1,6 +1,6 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
-import SelectField from "../SelectField";
+import SelectField from "./FormFields/SelectField";
 import rawDistricts from "../../data/okresy.json";
 import rawRegions from "../../data/kraje.json";
 import Typography from "@mui/material/Typography";

@@ -8,6 +8,8 @@ import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Button from "@mui/material/Button";
 import { Formik, Form } from "formik";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 import formModel from "./FormModel/formModel";
 import validationSchema from "./FormModel/validationSchema";
@@ -33,15 +35,21 @@ const FormCard = () => {
     setActiveStep(0);
   };
 
-  const submitForm = (values, { setSubmitting }) => {
+  const submitForm = async (values, { setSubmitting, resetForm }) => {
     const valuesToSubmit = { ...values };
+    const url = "http://127.0.0.1:8000/lead";
     if (typeof valuesToSubmit.phone === "number") {
       valuesToSubmit.phone = `+420${valuesToSubmit.phone.toString()}`;
     }
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
+
+    try {
+      await axios.post(url, valuesToSubmit);
+      handleNext();
       setSubmitting(false);
-    }, 400);
+      resetForm();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const handleSubmit = (values, actions) => {
@@ -55,91 +63,100 @@ const FormCard = () => {
   };
 
   return (
-    <Paper elevation={3} className={classes.paper}>
-      <Typography component="h1" variant="h4" align="center" marginBottom={3}>
-        Chci nabídku
-      </Typography>
-      <Box sx={{ width: "100%" }}>
-        <Stepper activeStep={activeStep} sx={{ pb: 5 }}>
-          {steps.map((label) => {
-            return (
-              <Step key={label}>
-                <StepLabel>{label}</StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
+    <Box my={3} className={classes.root}>
+      <Paper elevation={3} className={classes.paper}>
+        <Typography component="h1" variant="h4" align="center" marginBottom={3}>
+          Chci nabídku
+        </Typography>
+        <Box sx={{ width: "100%" }}>
+          <Stepper activeStep={activeStep} sx={{ pb: 5 }}>
+            {steps.map((label) => {
+              return (
+                <Step key={label}>
+                  <StepLabel>{label}</StepLabel>
+                </Step>
+              );
+            })}
+          </Stepper>
 
-        <Formik
-          initialValues={{
-            estateType: "",
-            region: "",
-            district: "",
-            fullName: "",
-            phone: "",
-            email: "",
-          }}
-          validationSchema={
-            activeStep ? validationSchema[1] : validationSchema[0]
-          }
-          onSubmit={handleSubmit}
-        >
-          {({ values, isSubmitting }) => {
-            return (
-              <Form id={formId}>
-                {!activeStep ? (
-                  <EstateForm formField={formField} values={values} />
-                ) : (
-                  <ContactForm formField={formField} fullWidth />
-                )}
-
-                {activeStep === steps.length ? (
-                  <React.Fragment>
-                    <Typography sx={{ mt: 2, mb: 1 }}>
-                      All steps completed - you&apos;re finished
-                    </Typography>
-                    <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                      <Box sx={{ flex: "1 1 auto" }} />
-                      <Button onClick={handleReset}>Reset</Button>
-                    </Box>
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    {/* <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography> */}
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        pt: 2,
-                        mt: 5,
-                      }}
-                    >
-                      <Button
-                        color="inherit"
-                        disabled={activeStep === 0}
-                        onClick={handleBack}
-                        sx={{ mr: 1 }}
+          <Formik
+            initialValues={{
+              estateType: "",
+              region: "",
+              district: "",
+              fullName: "",
+              phone: "",
+              email: "",
+            }}
+            validationSchema={
+              activeStep ? validationSchema[1] : validationSchema[0]
+            }
+            onSubmit={handleSubmit}
+          >
+            {({ values, isSubmitting }) => {
+              return (
+                <Form id={formId}>
+                  {activeStep === steps.length ? (
+                    <React.Fragment>
+                      <Typography sx={{ mt: 2, mb: 1 }} align="center">
+                        Žádost byla úspešne odeslaná.
+                      </Typography>
+                      {/* <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}> */}
+                      <Box
+                        sx={{ display: "flex", flexDirection: "row", pt: 2 }}
+                        justifyContent="center"
                       >
-                        Back
-                      </Button>
-                      <Box sx={{ flex: "1 1 auto" }} />
-
-                      <Button
-                        // onClick={handleNext}
-                        type="submit"
-                        disabled={isSubmitting}
+                        {/* <Box sx={{ flex: "1 1 auto" }} /> */}
+                        <Button onClick={handleReset}>
+                          Vyplnit novou žádost
+                        </Button>
+                        <Button component={Link} to="/">
+                          Seznam žádostí
+                        </Button>
+                      </Box>
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      {!activeStep ? (
+                        <EstateForm formField={formField} values={values} />
+                      ) : (
+                        <ContactForm formField={formField} fullWidth />
+                      )}
+                      <Box
+                        sx={{
+                          display: "flex",
+                          flexDirection: "row",
+                          pt: 2,
+                          mt: 5,
+                        }}
                       >
-                        {activeStep === steps.length - 1 ? "Finish" : "Next"}
-                      </Button>
-                    </Box>
-                  </React.Fragment>
-                )}
-              </Form>
-            );
-          }}
-        </Formik>
-      </Box>
-    </Paper>
+                        <Button
+                          color="inherit"
+                          disabled={activeStep === 0}
+                          onClick={handleBack}
+                          sx={{ mr: 1 }}
+                        >
+                          Back
+                        </Button>
+                        <Box sx={{ flex: "1 1 auto" }} />
+
+                        <Button
+                          // onClick={handleNext}
+                          type="submit"
+                          disabled={isSubmitting}
+                        >
+                          {activeStep === steps.length - 1 ? "Finish" : "Next"}
+                        </Button>
+                      </Box>
+                    </React.Fragment>
+                  )}
+                </Form>
+              );
+            }}
+          </Formik>
+        </Box>
+      </Paper>
+    </Box>
   );
 };
 

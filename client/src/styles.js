@@ -39,6 +39,18 @@ const useStyle = makeStyles(() => ({
       padding: theme.spacing(3),
     },
   },
+  estateList: {
+    width: "auto",
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(1000 + theme.spacing(2) * 2)]: {
+      width: 1000,
+      marginLeft: "auto",
+      marginRight: "auto",
+    },
+    // backgroundColor: theme.palette.background.light,
+    // color: theme.palette.text.primary,
+  },
 }));
 
 export { theme, useStyle };

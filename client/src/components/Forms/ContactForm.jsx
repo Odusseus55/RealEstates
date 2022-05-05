@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import InputField from "../InputField";
-import PhoneField from "../PhoneField";
+import InputField from "./FormFields/InputField";
+import PhoneField from "./FormFields/PhoneField";
 
 function ContactForm({ formField }) {
   const fullName = formField.fullName;

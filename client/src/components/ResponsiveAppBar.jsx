@@ -14,7 +14,7 @@ import HouseIcon from "@mui/icons-material/House";
 
 const pages = [
   {
-    title: "Seznam nabídek",
+    title: "Seznam žádostí",
     route: "/",
   },
   {

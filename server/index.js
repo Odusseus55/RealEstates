@@ -6,6 +6,7 @@ const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
 const Router = require('@koa/router');
 const json = require('koa-json');
+const cors = require('koa2-cors');
 const isEmail = require('validator/lib/isEmail');
 const regions = require('./data/kraje.json');
 const districts = require('./data/okresy.json');
@@ -55,7 +56,7 @@ const estateSchema = new mongoose.Schema({
     type: String,
     required: true,
     enum: {
-      values: ['house', 'apartment'],
+      values: ['Byt', 'Dům', 'Pozemek'],
       message: '"{VALUE}" is not valid estate type.',
     },
   },
@@ -161,6 +162,7 @@ router.delete('/lead/:id', async (ctx) => {
 // Start App
 const app = new Koa();
 
+app.use(cors());
 app.use(json());
 app.use(bodyParser());
 

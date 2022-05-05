@@ -9,7 +9,7 @@ import ResponsiveAppBar from "./components/ResponsiveAppBar";
 // import MaterialLayout from "./components/Layout/MaterialLayout";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
-import { theme, useStyle } from "./styles";
+import { theme } from "./styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Footer from "./components/Footer";
 
@@ -27,7 +27,7 @@ function App() {
 }
 
 function Layout() {
-  const classes = useStyle();
+  // const classes = useStyle();
 
   return (
     <div>
@@ -42,9 +42,9 @@ function Layout() {
               flexDirection: "column",
             }}
           >
-            <Box my={3} className={classes.root}>
-              <Outlet />
-            </Box>
+            {/* <Box my={3} className={classes.root}> */}
+            <Outlet />
+            {/* </Box> */}
           </Container>
           <Footer />
         </Box>
